@@ -18,6 +18,7 @@ struct SliderView: View {
         HStack {
             Text("\(lround(value))")
                 .foregroundColor(.black)
+                .frame(width: 50)
             
             Slider(value: $value, in: 0...255, step: 1)
                 .onChange(of: value, perform: action)
@@ -27,7 +28,6 @@ struct SliderView: View {
                 .textFieldStyle(.roundedBorder)
                 .frame(width: 50)
         }
-        .padding()
     }
 }
 

@@ -21,22 +21,26 @@ struct ContentView: View {
         ZStack {
             Color(.init(red: 40/255, green: 40/255, blue: 255, alpha: 1))
                 .ignoresSafeArea()
+            
             VStack {
                 ColorWindow(redColor: $redValue, greenColor: $greenValue, blueColor: $blueValue)
                 
+                Spacer()
+                
                 SliderView(value: $redValue, rgbValue: $redString, color: .red) {_ in
-                    redString = "\(redValue)"
+                    redString = String(format: "%.f", redValue)
+
                 }
                 
                 SliderView(value: $greenValue, rgbValue: $greenString, color: .green) {_ in
-                    greenString = "\(greenValue)"
+                    greenString = String(format: "%.f", greenValue)
                 }
                 
                 SliderView(value: $blueValue, rgbValue: $blueString, color: .blue) {_ in
-                    blueString = "\(blueValue)"
+                    blueString = String(format: "%.f", blueValue)
                 }
             }
-            .padding(EdgeInsets(top: 20, leading: 16, bottom: 300, trailing: 16))
+            .padding(EdgeInsets(top: 20, leading: 16, bottom: 350, trailing: 16))
         }
     }
 }
