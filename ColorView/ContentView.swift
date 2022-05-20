@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var redValue: Double = 10
-    @State private var greenValue: Double = 100
-    @State private var blueValue: Double = 10
+    @State private var redValue: CGFloat = 10
+    @State private var greenValue: CGFloat = 20
+    @State private var blueValue: CGFloat = 30
     
     @State private var redString = ""
     @State private var greenString = ""
@@ -24,15 +24,15 @@ struct ContentView: View {
             VStack {
                 ColorWindow(redColor: $redValue, greenColor: $greenValue, blueColor: $blueValue)
                 
-                SliderView(value: $redValue, rgbValue: $redString, color: .red) {
+                SliderView(value: $redValue, rgbValue: $redString, color: .red) {_ in
                     redString = "\(redValue)"
                 }
                 
-                SliderView(value: $greenValue, rgbValue: $greenString, color: .green) {
+                SliderView(value: $greenValue, rgbValue: $greenString, color: .green) {_ in
                     greenString = "\(greenValue)"
                 }
                 
-                SliderView(value: $blueValue, rgbValue: $blueString, color: .blue) {
+                SliderView(value: $blueValue, rgbValue: $blueString, color: .blue) {_ in
                     blueString = "\(blueValue)"
                 }
             }

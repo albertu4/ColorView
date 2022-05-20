@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ColorWindow: View {
-    @Binding var redColor: Double
-    @Binding var greenColor: Double
-    @Binding var blueColor: Double
+    @Binding var redColor: CGFloat
+    @Binding var greenColor: CGFloat
+    @Binding var blueColor: CGFloat
     
     var body: some View {
         Rectangle()
             .frame(height: 150)
-            .foregroundColor(Color(.sRGB, red: redColor, green: greenColor, blue: blueColor, opacity: 1))
+            .foregroundColor(Color(.sRGB, red: redColor/255, green: greenColor/255, blue: blueColor/255))
         
             .overlay(Rectangle().stroke(Color.white, lineWidth: 10))
             .cornerRadius(30)
