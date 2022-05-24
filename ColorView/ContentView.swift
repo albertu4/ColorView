@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var redValue: CGFloat = 10
-    @State private var greenValue: CGFloat = 20
-    @State private var blueValue: CGFloat = 30
+    @State private var redValue: Double = 10
+    @State private var greenValue: Double = 20
+    @State private var blueValue: Double = 30
     
-    @State private var redString = ""
-    @State private var greenString = ""
-    @State private var blueString = ""
+    @State private var redString = "10"
+    @State private var greenString = "20"
+    @State private var blueString = "30"
     
     var body: some View {
         
@@ -29,7 +29,6 @@ struct ContentView: View {
                 
                 SliderView(value: $redValue, rgbValue: $redString, color: .red) {_ in
                     redString = String(format: "%.f", redValue)
-
                 }
                 
                 SliderView(value: $greenValue, rgbValue: $greenString, color: .green) {_ in
@@ -38,6 +37,17 @@ struct ContentView: View {
                 
                 SliderView(value: $blueValue, rgbValue: $blueString, color: .blue) {_ in
                     blueString = String(format: "%.f", blueValue)
+                }
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") {
+                            redValue = CGFloat(Int(redString) ?? 0)
+                            greenValue = CGFloat(Int(greenString) ?? 0)
+                            blueValue = CGFloat(Int(blueString) ?? 0)
+                            UIApplication.shared.keyWindow?.endEditing(true) //Used deprecated func
+                        }
+                    }
                 }
             }
             .padding(EdgeInsets(top: 20, leading: 16, bottom: 350, trailing: 16))
@@ -48,5 +58,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+
     }
 }

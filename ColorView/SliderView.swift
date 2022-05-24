@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SliderView: View {
-    @Binding var value: CGFloat
+    @Binding var value: Double
     @Binding var rgbValue: String
     
     let color: Color
@@ -22,17 +22,13 @@ struct SliderView: View {
             
             Slider(value: $value, in: 0...255, step: 1)
                 .onChange(of: value, perform: action)
-                .foregroundColor(color)
+                .tint(color)
             
             TextField("", text: $rgbValue)
                 .textFieldStyle(.roundedBorder)
                 .frame(width: 50)
+                .keyboardType(.decimalPad)
+            
         }
     }
 }
-
-//struct SliderView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SliderView(value: 10.0, rgbValue: "10.0", color: .red, action: <#(Double) -> Void#>)
-//    }
-//}
