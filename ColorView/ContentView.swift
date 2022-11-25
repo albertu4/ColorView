@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+enum Field: Hashable {
+    case red, green, blue
+}
+
 struct ContentView: View {
-    @State private var redValue: Double = 10
-    @State private var greenValue: Double = 20
-    @State private var blueValue: Double = 30
+    @State private var redValue = Double.random(in: 0...255)
+    @State private var greenValue = Double.random(in: 0...255)
+    @State private var blueValue = Double.random(in: 0...255)
     
-    @State private var redString = "10"
-    @State private var greenString = "20"
-    @State private var blueString = "30"
+    @FocusState private var focusedField: Field?
     
     var body: some View {
         
@@ -23,34 +25,59 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack {
-                ColorWindow(redColor: $redValue, greenColor: $greenValue, blueColor: $blueValue)
+                ColorWindow(redColor: redValue, greenColor: greenValue, blueColor: blueValue)
                 
                 Spacer()
                 
-                SliderView(value: $redValue, rgbValue: $redString, color: .red) {_ in
-                    redString = String(format: "%.f", redValue)
-                }
-                
-                SliderView(value: $greenValue, rgbValue: $greenString, color: .green) {_ in
-                    greenString = String(format: "%.f", greenValue)
-                }
-                
-                SliderView(value: $blueValue, rgbValue: $blueString, color: .blue) {_ in
-                    blueString = String(format: "%.f", blueValue)
-                }
+                ColorSlider(value: $redValue, color: .red)
+                    .focused($focusedField, equals: .red)
+                ColorSlider(value: $greenValue, color: .green)
+                    .focused($focusedField, equals: .green)
+                ColorSlider(value: $blueValue, color: .blue)
+                    .focused($focusedField, equals: .blue)
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
+                        Button(action: previousField) {
+                            Image(systemName: "chevron.up")
+                        }
+                        
+                        Button(action: nextField) {
+                            Image(systemName: "chevron.down")
+                        }
+
                         Spacer()
                         Button("Done") {
-                            redValue = CGFloat(Int(redString) ?? 0)
-                            greenValue = CGFloat(Int(greenString) ?? 0)
-                            blueValue = CGFloat(Int(blueString) ?? 0)
-                            UIApplication.shared.keyWindow?.endEditing(true) //Used deprecated func
+                            focusedField = nil
                         }
                     }
                 }
             }
-            .padding(EdgeInsets(top: 20, leading: 16, bottom: 350, trailing: 16))
+            .padding(EdgeInsets(top: 20, leading: 16, bottom: 400, trailing: 16))
+        }
+        .onTapGesture {
+            focusedField = nil
+        }
+    }
+    
+    private func nextField() {
+        switch focusedField {
+        case .red:
+            focusedField = .green
+        case .green:
+            focusedField = .blue
+        default:
+            focusedField = .red
+        }
+    }
+    
+    private func previousField() {
+        switch focusedField {
+        case .red:
+            focusedField = .blue
+        case .green:
+            focusedField = .red
+        default:
+            focusedField = .green
         }
     }
 }
@@ -58,6 +85,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-
     }
 }

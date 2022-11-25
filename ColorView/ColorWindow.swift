@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ColorWindow: View {
-    @Binding var redColor: Double
-    @Binding var greenColor: Double
-    @Binding var blueColor: Double
+    let redColor: Double
+    let greenColor: Double
+    let blueColor: Double
     
     var body: some View {
         Rectangle()
@@ -19,5 +19,11 @@ struct ColorWindow: View {
         
             .cornerRadius(30)
             .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color.white, lineWidth: 5))
+    }
+}
+
+struct ColorWindow_Previews: PreviewProvider {
+    static var previews: some View {
+        ColorWindow(redColor: 100, greenColor: 50, blueColor: 100)
     }
 }
