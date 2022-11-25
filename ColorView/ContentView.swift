@@ -27,36 +27,33 @@ struct ContentView: View {
             VStack {
                 ColorWindow(redColor: redValue, greenColor: greenValue, blueColor: blueValue)
                 
-                Spacer()
+                VStack {
+                    ColorSlider(value: $redValue, color: .red)
+                        .focused($focusedField, equals: .red)
+                    ColorSlider(value: $greenValue, color: .green)
+                        .focused($focusedField, equals: .green)
+                    ColorSlider(value: $blueValue, color: .blue)
+                        .focused($focusedField, equals: .blue)
+                }
+                .frame(height: 200)
                 
-                ColorSlider(value: $redValue, color: .red)
-                    .focused($focusedField, equals: .red)
-                ColorSlider(value: $greenValue, color: .green)
-                    .focused($focusedField, equals: .green)
-                ColorSlider(value: $blueValue, color: .blue)
-                    .focused($focusedField, equals: .blue)
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
                         Button(action: previousField) {
                             Image(systemName: "chevron.up")
                         }
-                        
                         Button(action: nextField) {
                             Image(systemName: "chevron.down")
                         }
-
                         Spacer()
-                        Button("Done") {
-                            focusedField = nil
-                        }
+                        Button("Done") { focusedField = nil }
                     }
                 }
+                Spacer()
             }
-            .padding(EdgeInsets(top: 20, leading: 16, bottom: 400, trailing: 16))
+            .padding()
         }
-        .onTapGesture {
-            focusedField = nil
-        }
+        .onTapGesture { focusedField = nil }
     }
     
     private func nextField() {

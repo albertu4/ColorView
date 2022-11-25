@@ -24,7 +24,7 @@ struct ColorValueTextField: View {
             }
             .textFieldStyle(.roundedBorder)
             .frame(width: 50)
-            .keyboardType(.numberPad)
+            .keyboardType(.decimalPad)
             .alert("Incorrect value", isPresented: $alertPresented, actions: {}) {
                 Text("Input within 0 and 255")
             }
