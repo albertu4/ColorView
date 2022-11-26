@@ -9,7 +9,7 @@ HW 3.2
           In the keyboard toolbar, add transition buttons between TextFields and completion button Done.
           If you enter inappropriate data, display a warning
 
-**WHAT'S NEW I USED:** @Binding, @FocusState, random(in:Range), onTapGesture, onAppear, alert, Slider, keyboardType
+**WHAT'S NEW I USED:** @Binding, @FocusState, random(in:Range), onTapGesture, onAppear, alert, Slider, keyboardType, ToolbarItemGroup
 
 **GIF:**
 
