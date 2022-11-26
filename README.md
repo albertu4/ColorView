@@ -11,4 +11,4 @@ HW 3.2
 
 **GIF:**
 
-![Simulator Screen Recording - iPhone 14 Pro - 2022-11-26 at 10 50 17](https://user-images.githubusercontent.com/97275239/204071868-08c3b517-bdd1-44cd-b47a-73b03bcdf7c6.gif)
+![Simulator Screen Recording - iPhone 14 Pro - 2022-11-26 at 11 12 29](https://user-images.githubusercontent.com/97275239/204071909-c5cd7a3c-a7a2-4503-a452-225638f2aea6.gif)
